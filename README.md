@@ -92,4 +92,6 @@ $tcc
 ## 联系方式
  
  - 请通过微信联系作者，并备注 `PHP` 方便辨认
+ - 请通过扫码，或者添加微信 `h6play`
  
+ ![](https://github.com/h6play/hyperf-tcc/blob/main/wx.png?raw=true)
