@@ -20,7 +20,7 @@ class CouponLockTcc extends TccOption
     {
         # 验证是否有优惠券
         if ($this->couponId <= 0) {
-            return false;
+            return null;
         }
         $service = new CouponService;
         # 获取优惠券
