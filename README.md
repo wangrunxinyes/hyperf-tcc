@@ -94,11 +94,11 @@ $tcc
  - `TccOption` 都必须实现 `try, confirm, cancel` 方法
  - 其中 `confirm` 允许空操作
  
- ![](https://github.com/h6play/hyperf-tcc/blob/main/process.png?raw=true)
+ ![](https://h6play.oss-cn-shenzhen.aliyuncs.com/process.png)
 
 ## 联系方式
  
  - 请通过微信联系作者，并备注 `PHP` 方便辨认
  - 请通过扫码，或者添加微信 `h6play`
  
- ![](https://github.com/h6play/hyperf-tcc/blob/main/wx.png?raw=true)
+ ![](https://h6play.oss-cn-shenzhen.aliyuncs.com/wx.png)
