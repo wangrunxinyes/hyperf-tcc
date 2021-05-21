@@ -91,6 +91,11 @@ $tcc
 
 ## 实现原理
 
+ - `TccOption` 都必须实现 `try, confirm, cancel` 方法
+ - 其中 `confirm` 允许空操作
+ 
+ ![](https://github.com/h6play/hyperf-tcc/blob/main/process.png?raw=true)
+
 ## 联系方式
  
  - 请通过微信联系作者，并备注 `PHP` 方便辨认
