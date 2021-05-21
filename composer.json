@@ -7,6 +7,14 @@
             "email": "h6play@163.com"
         }
     ],
+    "homepage":"https://github.com/h6play/hyperf-tcc",
+    "license": "MIT",
+    "keywords": [
+        "h6play",
+        "hyperf",
+        "tcc",
+        "transaction"
+    ],
     "require": {
         "hyperf/nsq": "^2.1",
         "hyperf/redis": "~2.1.0",
