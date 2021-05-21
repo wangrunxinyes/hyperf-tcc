@@ -6,6 +6,7 @@ namespace H6Play\TccTransaction\Coordinator;
 
 use H6Play\TccTransaction\Exception\Handle;
 use H6Play\TccTransaction\Tcc;
+use H6Play\TccTransaction\TccState;
 use H6Play\TccTransaction\Util\Di;
 use Hyperf\Contract\StdoutLoggerInterface;
 use Hyperf\Nsq\AbstractConsumer;
@@ -94,6 +95,8 @@ class TccCoordinator extends AbstractConsumer
                     $this->logger->error('[TCC事务管理] 回滚失败 ' . $tccId);
                 }
             }
+        } else {
+            $this->logger->info('[TCC事务管理] 无效的状态 ' . $tccId);
         }
 
         return Result::ACK;

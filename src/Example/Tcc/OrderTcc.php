@@ -15,7 +15,7 @@ class OrderTcc extends TccOption
     {
         # 获取依赖参数 优惠券, 商品
         $goods = $this->tcc->get(GoodsLockTcc::class);
-        $coupon = $this->tcc->get(CouponLockTcc::class, false);
+        $coupon = $this->tcc->get(CouponLockTcc::class);
 
         # 创建订单
         $service = new OrderService;

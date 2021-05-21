@@ -18,13 +18,12 @@ class Test
 
     /**
      * 模拟创建订单接口
+     * @param $goodsId
+     * @param $couponId
      * @return array
-     * @throws \H6Play\TccTransaction\Exception\TccOptionParamException
      */
-    public function handle()
+    public function handle($goodsId, $couponId)
     {
-        $goodsId = 1;
-        $couponId = 0;
         $tcc = new Tcc;
         $tcc
             ->tcc(1, new GoodsLockTcc($goodsId)) // 商品库存锁定

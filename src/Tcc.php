@@ -223,20 +223,24 @@ class Tcc
 
         // 当全部成功后删除操作和返回-减轻存储负担
         if ($optionStatus) {
-            $this->state->options = [];
-            $this->state->results = [];
-            $this->state->rely = [];
+            $state = clone $this->state;
+            $state->options = [];
+            $state->results = [];
+            $state->rely = [];
+            $state = serialize($state);
+        } else {
+            $state = serialize($this->state);
         }
 
-        $this->redis->hSet('tcc', $this->tccId, serialize($this->state));
+        $this->redis->hSet('tcc', $this->tccId, $state);
         $this->logger->info('[TCC事务] 推送状态 ' . $optionStep);
     }
 
-    /*
+    /**
      * 获取响应参数
      * @param string $key
+     * @param null $default
      * @return mixed|null
-     * @throws TccOptionParamException
      */
     public function get($key, $default = null)
     {
@@ -248,10 +252,6 @@ class Tcc
                 return $this->state->results[$option->getKey()];
             }
         }
-        if ($default !== null) {
-            return $default;
-        } else {
-            throw new TccOptionParamException('TCC事务未找到 ' . $key . ' 操作的返回');
-        }
+        return $default;
     }
 }
