@@ -12,6 +12,8 @@
     php bin/hyperf.php vendor:publish h6play/hyperf-tcc
     # 执行迁移
     php bin/hyperf.php migrate
+    # 继承实现NSQ消费者进程 @Consumer
+    H6Play\TccTransaction\Coordinator\TccCoordinator
 
 ## 功能列表
 
