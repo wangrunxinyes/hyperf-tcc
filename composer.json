@@ -1,0 +1,28 @@
+{
+    "name": "h6play/hyperf-tcc",
+    "description": "基于Hyperf框架的TCC分布式事务组件",
+    "authors": [
+        {
+            "name": "h6play",
+            "email": "h6play@163.com"
+        }
+    ],
+    "require": {
+        "hyperf/nsq": "^2.1",
+        "hyperf/redis": "~2.1.0",
+        "hyperf/database": "~2.1.0",
+        "hyperf/snowflake": "^2.1",
+        "hyperf/logger": "~2.1.0",
+        "hyperf/db-connection": "~2.1.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "H6Play\\TccTransaction\\": "src/"
+        }
+    },
+    "extra": {
+        "hyperf": {
+            "config": "H6Play\\TccTransaction\\ConfigProvider"
+        }
+    }
+}
