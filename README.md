@@ -10,14 +10,24 @@
     
 ## 安装方式
 
-    # composer 安装
-    composer require h6play/hyperf-tcc
-    # 发布资源
-    php bin/hyperf.php vendor:publish h6play/hyperf-tcc
-    # 执行迁移
-    php bin/hyperf.php migrate
-    # 继承实现NSQ消费者进程 @Consumer
-    H6Play\TccTransaction\Coordinator\TccCoordinator
+```shell script
+# composer 安装
+composer require h6play/hyperf-tcc
+# 发布资源
+php bin/hyperf.php vendor:publish h6play/hyperf-tcc
+# 执行迁移
+php bin/hyperf.php migrate
+# 配置配置文件
+/config/autoload/tcc.php
+# 继承实现NSQ消费者进程 @Consumer
+H6Play\TccTransaction\Coordinator\TccCoordinator
+
+# 编写接口 /test1 调用测试类
+(new \H6Play\TccTransaction\Example\Test)->handle(1, 0);
+# 调用AB进行压力测试
+ab -n 1000 -c 100 http://127.0.0.1:9051/test1
+```
+
 
 ## 功能列表
 
@@ -29,7 +39,6 @@
 
 ## Composer依赖
 
- - 欢迎提PR
  - `"hyperf/nsq": "^2.1"`
  - `"hyperf/redis": "~2.1.0"`
  - `"hyperf/database": "~2.1.0"`
@@ -103,7 +112,7 @@ $tcc
 ## 联系方式
  
  - 请通过微信联系作者，并备注 `PHP` 方便辨认
- - 请通过扫码，或者添加微信 `h6play`]\
+ - 请通过扫码，或者添加微信 `h6play`
  
  
  ![](https://h6play.oss-cn-shenzhen.aliyuncs.com/wx.png)
