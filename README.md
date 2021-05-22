@@ -1,8 +1,12 @@
 # hyperf-tcc
 
-    基于Hyperf框架的分布式事务TCC组件，因为作者很少写Composer组件有些组件
-    确实不需要太高的版本，但是因为太懒所以直接复用了之前项目的 composer 包版本配置
-    已经经过 AB -N 1000 -N 100 压测测试, 无失败事务, 全可回滚, 数据无异常
+    基于Hyperf框架的分布式事务TCC组件
+    
+ - 因为有些 Composer 组件依赖的版本可能过高无法低版本兼容, 欢迎PR帮忙解决
+ - 已经经过 AB -N 1000 -N 100 压测测试, 无失败事务, 全可回滚, 数据无异常
+ - 实现思路参考 [loyaltylu/tcc-transaction](https://github.com/lizhanfei) 该作者写的
+ - 为啥要重写, 因为他使用了太多 `AOP` 并且代码 `可读性较差` 用的不太顺就自己搞了一个
+ - 欢迎测试和 PR
     
 ## 安装方式
 
@@ -99,6 +103,7 @@ $tcc
 ## 联系方式
  
  - 请通过微信联系作者，并备注 `PHP` 方便辨认
- - 请通过扫码，或者添加微信 `h6play`
+ - 请通过扫码，或者添加微信 `h6play`]\
+ 
  
  ![](https://h6play.oss-cn-shenzhen.aliyuncs.com/wx.png)
