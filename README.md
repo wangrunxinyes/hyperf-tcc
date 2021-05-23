@@ -1,6 +1,6 @@
 # hyperf-tcc
 
-    基于Hyperf框架的分布式事务TCC组件
+> 基于 Hyperf 框架的分布式事务 TCC 组件
     
  - 因为有些 Composer 组件依赖的版本可能过高无法低版本兼容, 欢迎PR帮忙解决
  - 已经经过 AB -N 1000 -N 100 压测测试, 无失败事务, 全可回滚, 数据无异常
@@ -8,25 +8,50 @@
  - 为啥要重写, 因为他使用了太多 `AOP` 并且代码 `可读性较差` 用的不太顺就自己搞了一个
  - 欢迎 `测试` 和 `PR`
     
-## 安装方式
-
-```shell script
-# composer 安装
-composer require h6play/hyperf-tcc
-# 发布资源
-php bin/hyperf.php vendor:publish h6play/hyperf-tcc
-# 执行迁移
-php bin/hyperf.php migrate
-# 配置配置文件
-/config/autoload/tcc.php
-# 继承实现NSQ消费者进程 @Consumer
-H6Play\TccTransaction\Coordinator\TccCoordinator
-
-# 编写接口 /test1 调用测试类
-(new \H6Play\TccTransaction\Example\Test)->handle(1, 0);
-# 调用AB进行压力测试
-ab -n 1000 -c 100 http://127.0.0.1:9051/test1
+## Install
+> 在使用 tcc 前先确保已经安装 Redis, Nsq
 ```
+composer require h6play/hyperf-tcc
+```
+发布资源
+```
+php bin/hyperf.php vendor:publish h6play/hyperf-tcc
+```
+执行迁移
+```
+php bin/hyperf.php migrate
+```
+
+# Run
+
+```php
+use H6Play\TccTransaction\Example\Test;
+
+   /**
+    * @GetMapping(path="nsq")
+    */
+    public function nsq(RequestInterface $req, ResponseInterface $res)
+    {
+        $goodsId = $req->input('goods_id', 1);
+        $couponId = $req->input('coupon_id', 0);
+        $result = (new Test())->handle($goodsId,$couponId);
+        return $res->json([
+           'code' => 0,
+           'data' => $result,
+        ]);
+    }
+```
+
+# Test
+```bash
+curl http://localhost:9501/index/nsq?goods_id=1&coupon_id=0
+
+{"code":0,"data":{"order":{"order_sn":255041892524236800,"body":"购买桃子","total_fee":"200.00","goods_id":1,"id":2483},"goods":{"id":1,"price":"200.00","name":"桃子","num":9994,"lock":0,"sale":6},"coupon":null}}
+```
+
+# 注意事项
+
+- 分布式事务, 本身是为了确保数据一致性, 在高并发测试下, 应该对接口服务做好限流(使用`RateLimit`组件)
 
 
 ## 功能列表
