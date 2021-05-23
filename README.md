@@ -43,6 +43,7 @@ use H6Play\TccTransaction\Example\Test;
 ```
 
 # Test
+> [Benchmark](./Benchmark.md)
 ```bash
 curl http://localhost:9501/index/nsq?goods_id=1&coupon_id=0
 
@@ -53,6 +54,17 @@ curl http://localhost:9501/index/nsq?goods_id=1&coupon_id=0
 
 - 分布式事务, 本身是为了确保数据一致性, 在高并发测试下, 应该对接口服务做好限流(使用`RateLimit`组件)
 
+
+## Nsq配置教程
+
+> [参考文档](https://nsq.io/overview/quick_start.html)
+
+```bash
+1. nsqlookupd
+2. nsqd --lookupd-tcp-address=127.0.0.1:4160
+
+config/autoload/nsq.php 使用默认配置端口即可
+```
 
 ## 功能列表
 
