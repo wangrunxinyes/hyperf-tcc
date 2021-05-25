@@ -15,7 +15,7 @@ class CouponSubTcc extends TccOption
     {
 
         # 获取优惠券ID, 依赖 CouponLockTcc::class 操作返回
-        $this->couponId = (int)$this->tcc->get(CouponLockTcc::class, 0);
+        $this->couponId = (int)($this->tcc->get(CouponLockTcc::class, [])['id'] ?? 0);
         if ($this->couponId) {
 
             # 占用优惠券
