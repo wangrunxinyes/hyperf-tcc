@@ -4,7 +4,7 @@
 namespace H6Play\TccTransaction\Exception;
 
 
-use H6Play\TccTransaction\Consumer\TccState;
+use H6Play\TccTransaction\TccState;
 use Hyperf\DbConnection\Db;
 
 class Handle
