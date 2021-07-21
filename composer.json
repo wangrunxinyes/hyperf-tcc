@@ -16,12 +16,12 @@
         "transaction"
     ],
     "require": {
-        "hyperf/nsq": "^2.1",
-        "hyperf/redis": "~2.1.0",
-        "hyperf/database": "~2.1.0",
-        "hyperf/snowflake": "^2.1",
-        "hyperf/logger": "~2.1.0",
-        "hyperf/db-connection": "~2.1.0"
+        "hyperf/nsq": "~2.1 | 2.2.*",
+        "hyperf/redis": "~2.1 | 2.2.*",
+        "hyperf/database": "~2.1 | 2.2.*",
+        "hyperf/snowflake": "~2.1 | 2.2.*",
+        "hyperf/logger": "~2.1 | 2.2.*",
+        "hyperf/db-connection": "~2.1 | 2.2.*"
     },
     "autoload": {
         "psr-4": {
