@@ -11,11 +11,11 @@
 ## Install
 > 在使用 tcc 前先确保已经安装 Redis, Nsq
 ```
-composer require h6play/hyperf-tcc
+composer require yogcloud/hyperf-tcc
 ```
 发布资源
 ```
-php bin/hyperf.php vendor:publish h6play/hyperf-tcc
+php bin/hyperf.php vendor:publish yogcloud/hyperf-tcc
 ```
 执行迁移
 ```
@@ -25,7 +25,7 @@ php bin/hyperf.php migrate
 # Run
 
 ```php
-use H6Play\TccTransaction\Example\Test;
+use YogCloud\TccTransaction\Example\Test;
 
    /**
     * @GetMapping(path="nsq")
@@ -91,7 +91,7 @@ config/autoload/nsq.php 使用默认配置端口即可
  - `TccOption` 事务操作
     - 需要针对性实现 `try, confirm, cancel` 方法
     - 例如 `商品库存锁定`,  `商品库存扣除` 等
-    - 在 `H6Play\TccTransaction\Example\Tcc` 下能看到很多演示写法
+    - 在 `YogCloud\TccTransaction\Example\Tcc` 下能看到很多演示写法
     - 不应当把 `复杂的参数` 放到该类中去例如对象等, 因为它会作为一个 `序列化的类` 存放到 `redis` 中
     - 如果操作类 `参数过多`, 或者 `属性` 中 `对象过多` 会造成 `存储负担`
     - 不推荐在 `TccOption` 操作类中写业务逻辑, 它应当作为一个调用服务的封装
@@ -110,14 +110,14 @@ config/autoload/nsq.php 使用默认配置端口即可
  - `Example\database.sql` 演示案例数据库脚本, 测试前先导入
 
 ```php
-use H6Play\TccTransaction\Tcc;
-use H6Play\TccTransaction\Example\Tcc\GoodsLockTcc;
-use H6Play\TccTransaction\Example\Tcc\CouponLockTcc;
-use H6Play\TccTransaction\Example\Tcc\OrderTcc;
-use H6Play\TccTransaction\Example\Tcc\GoodsSubTcc;
-use H6Play\TccTransaction\Example\Tcc\CouponSubTcc;
-use H6Play\TccTransaction\Example\Tcc\OrderMessageTcc;
-use H6Play\TccTransaction\Example\Tcc\OrderStatisticsTcc;
+use YogCloud\TccTransaction\Tcc;
+use YogCloud\TccTransaction\Example\Tcc\GoodsLockTcc;
+use YogCloud\TccTransaction\Example\Tcc\CouponLockTcc;
+use YogCloud\TccTransaction\Example\Tcc\OrderTcc;
+use YogCloud\TccTransaction\Example\Tcc\GoodsSubTcc;
+use YogCloud\TccTransaction\Example\Tcc\CouponSubTcc;
+use YogCloud\TccTransaction\Example\Tcc\OrderMessageTcc;
+use YogCloud\TccTransaction\Example\Tcc\OrderStatisticsTcc;
 
 $goodsId = 1;
 $couponId = 0;

@@ -1,10 +1,10 @@
 <?php
 
 
-namespace H6Play\TccTransaction\Example\Service;
+namespace YogCloud\TccTransaction\Example\Service;
 
 
-use H6Play\TccTransaction\Util\Di;
+use YogCloud\TccTransaction\Util\Di;
 use Hyperf\Database\Query\Expression;
 use Hyperf\DbConnection\Db;
 

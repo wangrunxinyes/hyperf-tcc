@@ -1,11 +1,9 @@
 <?php
 
+namespace YogCloud\TccTransaction\Example\Service;
 
-namespace H6Play\TccTransaction\Example\Service;
-
-
-use H6Play\TccTransaction\Exception\ServiceException;
 use Hyperf\DbConnection\Db;
+use YogCloud\TccTransaction\Exception\ServiceException;
 
 /*
  * 优惠券服务
@@ -20,19 +18,22 @@ use Hyperf\DbConnection\Db;
  */
 class CouponService
 {
-    # 获取优惠券
-    public function getCoupon(int $couponId) :array {
+    // 获取优惠券
+    public function getCoupon(int $couponId): array
+    {
         $result = Db::table('tcc_coupon')
             ->where('id', $couponId)
             ->first();
         if (!$result) {
             throw new ServiceException('优惠券不存在');
         }
+
         return (array) $result;
     }
 
-    # 锁定优惠券
-    public function lockCoupon(int $couponId) {
+    // 锁定优惠券
+    public function lockCoupon(int $couponId)
+    {
         Db::transaction(function () use ($couponId) {
             $lockResult = Db::table('tcc_coupon')
                 ->where('id', $couponId)
@@ -47,8 +48,9 @@ class CouponService
         });
     }
 
-    # 解锁优惠券
-    public function releaseCoupon(int $couponId) {
+    // 解锁优惠券
+    public function releaseCoupon(int $couponId)
+    {
         Db::transaction(function () use ($couponId) {
             $lockResult = Db::table('tcc_coupon')
                 ->where('id', $couponId)
@@ -63,8 +65,9 @@ class CouponService
         });
     }
 
-    # 使用优惠券
-    public function useCoupon(int $couponId) {
+    // 使用优惠券
+    public function useCoupon(int $couponId)
+    {
         Db::transaction(function () use ($couponId) {
             $result = Db::table('tcc_coupon')
                 ->where('id', $couponId)
@@ -74,15 +77,16 @@ class CouponService
                     'status' => 1,
                     'lock' => 0,
                 ]);
-            if(!$result) {
+            if (!$result) {
                 throw new ServiceException('使用优惠券失败');
             }
         });
     }
 
-    # 解除使用优惠券
-    public function unUseCoupon(int $couponId) {
-        Db::transaction(function() use ($couponId) {
+    // 解除使用优惠券
+    public function unUseCoupon(int $couponId)
+    {
+        Db::transaction(function () use ($couponId) {
             $result = Db::table('tcc_coupon')
                 ->where('id', $couponId)
                 ->where('status', 1)
@@ -91,7 +95,7 @@ class CouponService
                     'status' => 0,
                     'lock' => 1,
                 ]);
-            if(!$result) {
+            if (!$result) {
                 throw new ServiceException('解锁优惠券失败');
             }
         });

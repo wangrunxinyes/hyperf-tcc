@@ -1,11 +1,11 @@
 <?php
 
 
-namespace H6Play\TccTransaction\Example\Tcc;
+namespace YogCloud\TccTransaction\Example\Tcc;
 
 
-use H6Play\TccTransaction\Example\Service\OrderService;
-use H6Play\TccTransaction\TccOption;
+use YogCloud\TccTransaction\Example\Service\OrderService;
+use YogCloud\TccTransaction\TccOption;
 
 class OrderStatisticsTcc extends TccOption
 {

@@ -1,7 +1,7 @@
 <?php
 
 
-namespace H6Play\TccTransaction;
+namespace YogCloud\TccTransaction;
 
 
 class TccState

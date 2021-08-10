@@ -1,5 +1,5 @@
 {
-    "name": "h6play/hyperf-tcc",
+    "name": "yogcloud/hyperf-tcc",
     "description": "基于Hyperf框架的TCC分布式事务组件",
     "authors": [
         {
@@ -7,10 +7,10 @@
             "email": "h6play@163.com"
         }
     ],
-    "homepage":"https://github.com/h6play/hyperf-tcc",
+    "homepage":"https://github.com/yogcloud/hyperf-tcc",
     "license": "MIT",
     "keywords": [
-        "h6play",
+        "yogcloud",
         "hyperf",
         "tcc",
         "transaction"
@@ -25,12 +25,12 @@
     },
     "autoload": {
         "psr-4": {
-            "H6Play\\TccTransaction\\": "src/"
+            "YogCloud\\TccTransaction\\": "src/"
         }
     },
     "extra": {
         "hyperf": {
-            "config": "H6Play\\TccTransaction\\ConfigProvider"
+            "config": "YogCloud\\TccTransaction\\ConfigProvider"
         }
     }
 }

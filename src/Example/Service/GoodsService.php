@@ -1,11 +1,10 @@
 <?php
 
-namespace H6Play\TccTransaction\Example\Service;
+namespace YogCloud\TccTransaction\Example\Service;
 
-
-use H6Play\TccTransaction\Exception\ServiceException;
 use Hyperf\Database\Query\Expression;
 use Hyperf\DbConnection\Db;
+use YogCloud\TccTransaction\Exception\ServiceException;
 
 /*
  * 商品服务
@@ -20,49 +19,54 @@ use Hyperf\DbConnection\Db;
  */
 class GoodsService
 {
-    # 获取商品详情
-    public function getGoods(int $goodsId) :array {
+    // 获取商品详情
+    public function getGoods(int $goodsId): array
+    {
         $result = Db::table('tcc_goods')
             ->where('id', $goodsId)
             ->first();
-        if(!$result) {
+        if (!$result) {
             throw new ServiceException('购买商品不存在');
         }
+
         return (array) $result;
     }
 
-    # 锁定库存
-    public function lockStock(int $goodsId) {
-        Db::transaction(function() use ($goodsId) {
+    // 锁定库存
+    public function lockStock(int $goodsId)
+    {
+        Db::transaction(function () use ($goodsId) {
             $lockResult = Db::table('tcc_goods')
                 ->where('id', $goodsId)
                 ->whereRaw('(`num` - `lock`) > 0')
                 ->update([
-                    'lock' => new Expression('`lock` + 1')
+                    'lock' => new Expression('`lock` + 1'),
                 ]);
-            if(!$lockResult) {
+            if (!$lockResult) {
                 throw new ServiceException('暂无商品库存');
             }
         });
     }
 
-    # 解锁库存
-    public function releaseStock(int $goodsId) {
-        Db::transaction(function() use ($goodsId) {
+    // 解锁库存
+    public function releaseStock(int $goodsId)
+    {
+        Db::transaction(function () use ($goodsId) {
             $lockResult = Db::table('tcc_goods')
                 ->where('id', $goodsId)
                 ->whereRaw('`lock` > 0')
                 ->update([
                     'lock' => new Expression('`lock` - 1'),
                 ]);
-            if(!$lockResult) {
+            if (!$lockResult) {
                 throw new ServiceException('商品恢复库存失败');
             }
         });
     }
 
-    # 扣减库存
-    public function subStock(int $goodsId) {
+    // 扣减库存
+    public function subStock(int $goodsId)
+    {
         Db::transaction(function () use ($goodsId) {
             $result = Db::table('tcc_goods')
                 ->where('id', $goodsId)
@@ -79,8 +83,9 @@ class GoodsService
         });
     }
 
-    # 增加库存
-    public function addStock(int $goodsId) {
+    // 增加库存
+    public function addStock(int $goodsId)
+    {
         Db::transaction(function () use ($goodsId) {
             $result = Db::table('tcc_goods')
                 ->where('id', $goodsId)

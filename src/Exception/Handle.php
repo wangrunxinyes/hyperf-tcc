@@ -1,10 +1,10 @@
 <?php
 
 
-namespace H6Play\TccTransaction\Exception;
+namespace YogCloud\TccTransaction\Exception;
 
 
-use H6Play\TccTransaction\TccState;
+use YogCloud\TccTransaction\TccState;
 use Hyperf\DbConnection\Db;
 
 class Handle

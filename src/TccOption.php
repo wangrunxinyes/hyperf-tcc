@@ -1,10 +1,8 @@
 <?php
 
+namespace YogCloud\TccTransaction;
 
-namespace H6Play\TccTransaction;
-
-
-use H6Play\TccTransaction\Util\Di;
+use YogCloud\TccTransaction\Util\Di;
 
 abstract class TccOption
 {
@@ -15,9 +13,6 @@ abstract class TccOption
     /** @var Tcc */
     protected $tcc;
 
-    /**
-     * @param string $key
-     */
     public function setKey(string $key)
     {
         $this->key = $key;
@@ -31,13 +26,10 @@ abstract class TccOption
         return $this->key;
     }
 
-    /**
-     * @param string $step
-     */
     public function setStep(string $step)
     {
         $this->step = $step;
-        Di::logger()->info('[TCC事务] 任务项 ' . get_class($this) . '#' . $step);
+        Di::logger()->info('[TCC事务] 任务项 '.get_class($this).'#'.$step);
     }
 
     /**
@@ -64,9 +56,9 @@ abstract class TccOption
         return $this->tcc;
     }
 
-    public abstract function try();
+    abstract public function try();
 
-    public abstract function confirm();
+    abstract public function confirm();
 
-    public abstract function cancel();
+    abstract public function cancel();
 }

@@ -1,11 +1,11 @@
 <?php
 
 
-namespace H6Play\TccTransaction;
+namespace YogCloud\TccTransaction;
 
-use H6Play\TccTransaction\Exception\TccOptionParamException;
-use H6Play\TccTransaction\Exception\TccTraceException;
-use H6Play\TccTransaction\Util\Di;
+use YogCloud\TccTransaction\Exception\TccOptionParamException;
+use YogCloud\TccTransaction\Exception\TccTraceException;
+use YogCloud\TccTransaction\Util\Di;
 use Hyperf\Contract\StdoutLoggerInterface;
 use Hyperf\Redis\Redis;
 use Hyperf\Utils\Parallel;

@@ -1,11 +1,11 @@
 <?php
 
 
-namespace H6Play\TccTransaction\Example\Tcc;
+namespace YogCloud\TccTransaction\Example\Tcc;
 
 
-use H6Play\TccTransaction\Example\Service\CouponService;
-use H6Play\TccTransaction\TccOption;
+use YogCloud\TccTransaction\Example\Service\CouponService;
+use YogCloud\TccTransaction\TccOption;
 
 class CouponLockTcc extends TccOption
 {

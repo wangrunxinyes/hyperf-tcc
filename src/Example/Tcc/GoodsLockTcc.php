@@ -1,11 +1,9 @@
 <?php
 
+namespace YogCloud\TccTransaction\Example\Tcc;
 
-namespace H6Play\TccTransaction\Example\Tcc;
-
-
-use H6Play\TccTransaction\Example\Service\GoodsService;
-use H6Play\TccTransaction\TccOption;
+use YogCloud\TccTransaction\Example\Service\GoodsService;
+use YogCloud\TccTransaction\TccOption;
 
 class GoodsLockTcc extends TccOption
 {
@@ -18,15 +16,15 @@ class GoodsLockTcc extends TccOption
 
     public function try()
     {
-        $service = new GoodsService;
+        $service = new GoodsService();
 
-        # 验证商品是否存在
+        // 验证商品是否存在
         $goods = $service->getGoods($this->goodsId);
 
-        # 锁定商品库存 -1
+        // 锁定商品库存 -1
         $service->lockStock($this->goodsId);
 
-        # 返回商品信息
+        // 返回商品信息
         return $goods;
     }
 
@@ -37,8 +35,8 @@ class GoodsLockTcc extends TccOption
 
     public function cancel()
     {
-        # 解锁商品库存
-        $service = new GoodsService;
+        // 解锁商品库存
+        $service = new GoodsService();
         $service->releaseStock($this->goodsId);
     }
 }
