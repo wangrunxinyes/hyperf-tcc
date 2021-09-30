@@ -29,6 +29,6 @@ class GoodsSubTcc extends TccOption
     {
         // 增加商品库存, 减少销量, 恢复锁定
         $service = new GoodsService();
-        $service->subStock($this->goodsId);
+        $service->addStock($this->goodsId);
     }
 }
