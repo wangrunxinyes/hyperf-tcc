@@ -17,9 +17,9 @@ use YogCloud\TccTransaction\Util\Di;
 class TccCoordinator extends AbstractConsumer
 {
     /**
-     * @var Nsq
+     * @var Rabb
      */
-    protected $nsq;
+    protected $rabbitmq;
 
     /**
      * @var Redis

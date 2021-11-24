@@ -2,14 +2,12 @@
 
 > 基于 Hyperf 框架的分布式事务 TCC 组件
     
- - 因为有些 Composer 组件依赖的版本可能过高无法低版本兼容, 欢迎PR帮忙解决
- - 已经经过 AB -N 1000 -N 100 压测测试, 无失败事务, 全可回滚, 数据无异常
- - 实现思路参考 [loyaltylu/tcc-transaction](https://github.com/lizhanfei) 该作者写的
- - 为啥要重写, 因为他使用了太多 `AOP` 并且代码 `可读性较差` 用的不太顺就自己搞了一个
- - 欢迎 `测试` 和 `PR`
+-Fork version
+-Original: https://github.com/YogCloud/hyperf-tcc
+-Use rabbitmq instead of Nsq
     
 ## Install
-> 在使用 tcc 前先确保已经安装 Redis, Nsq
+> 在使用 tcc 前先确保已经安装 Redis, Rabbitmq
 ```
 composer require yogcloud/hyperf-tcc
 ```
@@ -54,18 +52,6 @@ curl http://localhost:9501/index/nsq?goods_id=1&coupon_id=0
 
 - 分布式事务, 本身是为了确保数据一致性, 在高并发测试下, 应该对接口服务做好限流(使用`RateLimit`组件)
 
-
-## Nsq配置教程
-
-> [参考文档](https://nsq.io/overview/quick_start.html)
-
-```bash
-1. nsqlookupd
-2. nsqd --lookupd-tcp-address=127.0.0.1:4160
-
-config/autoload/nsq.php 使用默认配置端口即可
-```
-
 ## 功能列表
 
  - [X] 实现TCC操作实现接口 `TccOption`
@@ -76,7 +62,6 @@ config/autoload/nsq.php 使用默认配置端口即可
 
 ## Composer依赖
 
- - `"hyperf/nsq": "^2.1"`
  - `"hyperf/redis": "~2.1.0"`
  - `"hyperf/database": "~2.1.0"`
  - `"hyperf/snowflake": "^2.1"`
@@ -145,11 +130,3 @@ $tcc
  - 其中 `confirm` 允许空操作
  
  ![](https://h6play.oss-cn-shenzhen.aliyuncs.com/process.png)
-
-## 联系方式
- 
- - 请通过微信联系作者，并备注 `PHP` 方便辨认
- - 请通过扫码，或者添加微信 `h6play`
- 
- 
- ![](https://h6play.oss-cn-shenzhen.aliyuncs.com/wx.png)
